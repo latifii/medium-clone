@@ -3,9 +3,11 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12">
-          <h1 class="text-xs-center">Sign up</h1>
+          <h1 class="text-xs-center">Login</h1>
           <p class="text-xs-center">
-            <router-link :to="{name: 'login'}"> Need an account? </router-link>
+            <router-link :to="{name: 'register'}">
+              Need an account?
+            </router-link>
           </p>
           <!-- VALIDATION ERRORS -->
           <validation-errors
@@ -13,14 +15,6 @@
             :validation-errors="validationErrors"
           ></validation-errors>
           <form @submit.prevent="onSubmit">
-            <fieldset class="form-group">
-              <input
-                class="form-control form-control-lg"
-                type="text"
-                placeholder="Username"
-                v-model="user"
-              />
-            </fieldset>
             <fieldset class="form-group">
               <input
                 class="form-control form-control-lg"
@@ -41,7 +35,7 @@
               class="btn btn-lg btn-primary pull-xs-right"
               :disabled="isSubmitting"
             >
-              Sign Up
+              Login
             </button>
           </form>
         </div>
@@ -54,13 +48,12 @@
 import ValidationErrors from '@/components/ValidationErrors.vue'
 
 export default {
-  name: 'McvRegister',
+  name: 'McvLogin',
   components: {
     ValidationErrors,
   },
   data() {
     return {
-      user: '',
       email: '',
       password: '',
     }
@@ -76,9 +69,8 @@ export default {
   methods: {
     onSubmit() {
       this.$store
-        .dispatch('register', {
+        .dispatch('login', {
           email: this.email,
-          username: this.user,
           password: this.password,
         })
         .then((res) => {
