@@ -1,12 +1,14 @@
 <template>
   <nav class="navbar navbar-light">
     <div class="container">
-      <router-link class="navbar-brand" :to="{name: 'home'}">
+      <router-link class="navbar-brand" :to="{name: 'globalFeed'}">
         MediumClone
       </router-link>
       <ul class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
-          <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
+          <router-link class="nav-link" :to="{name: 'globalFeed'}"
+            >Home</router-link
+          >
         </li>
         <template v-if="isLoggedIn">
           <li class="nav-item">
@@ -59,7 +61,7 @@
 import {mapGetters} from 'vuex'
 
 export default {
-  name: 'McvTopbar',
+  name: 'BaseTopbar',
   computed: {
     // ...mapState({
     //   currentUser: (state) => state.auth.currentUser,

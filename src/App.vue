@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <mcv-topbar></mcv-topbar>
+    <base-topbar></base-topbar>
     <router-view />
   </div>
 </template>
 <script>
-import McvTopbar from '@/components/Topbar.vue'
+import BaseTopbar from '@/components/BaseTopbar.vue'
 
 export default {
   name: 'App',
   components: {
-    McvTopbar,
+    BaseTopbar,
   },
   mounted() {
     this.$store.dispatch('getCurrentUser')
