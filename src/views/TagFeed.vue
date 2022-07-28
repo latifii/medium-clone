@@ -25,10 +25,18 @@ export default {
     PopularTags,
     McvBanner,
   },
-  data() {
-    return {
-      apiUrl: '/articles',
-    }
+  computed: {
+    tagName() {
+      return this.$route.params.slug
+    },
+    apiUrl() {
+      return `/articles?tag=${this.tagName}`
+    },
   },
+  //   data() {
+  //     return {
+  //       apiUrl: '/articles',
+  //     }
+  //   },
 }
 </script>

@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div v-if="isLoading">Loading Please a Wait</div>
-    <div v-if="error">Error Site</div>
+    <!-- <div >Loading Please a Wait</div> -->
+    <loading-page v-if="isLoading"></loading-page>
+    <error-message v-if="error" :message="error"></error-message>
     <div v-if="feed">
       <div
         class="article-preview"
@@ -43,8 +44,11 @@
 
 <script>
 import {mapState} from 'vuex'
+import ErrorMessage from './ErrorMessage.vue'
+// import LoadingPage from './LoadingPage.vue'
 export default {
   name: 'McvFeed',
+  components: {ErrorMessage},
   props: {
     apiUrl: {
       type: String,
@@ -60,7 +64,6 @@ export default {
   },
   mounted() {
     console.log('feed')
-    // this.$store.dispatch(actionTypes.getFeed, {apiUrl: this.apiUrl})
     this.$store.dispatch('getFeed', {apiUrl: this.apiUrl})
   },
 }

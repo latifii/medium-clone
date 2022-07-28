@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div v-if="isLoading">Loading...</div>
+    <loading-page v-if="isLoading"></loading-page>
     <div v-if="error">Something is broken</div>
     <div class="sidebar" v-if="tags">
       <p>Popular Tags</p>
       <div class="tag-list">
-        <a
-          href=""
+        <router-link
           v-for="tag in tags"
           :key="tag"
+          :to="{name: 'tag', params: {slug: tag}}"
           class="tag-default tag-pill"
-          >{{ tag }}</a
+          >{{ tag }}</router-link
         >
       </div>
     </div>
