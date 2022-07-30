@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!-- <div >Loading Please a Wait</div> -->
-    <loading-page v-if="isLoading"></loading-page>
+    <loading-page v-if="isLoading">Loading Please a Wait</loading-page>
     <error-message v-if="error" :message="error"></error-message>
     <div v-if="feed">
       <div
@@ -45,10 +44,10 @@
 <script>
 import {mapState} from 'vuex'
 import ErrorMessage from './ErrorMessage.vue'
-// import LoadingPage from './LoadingPage.vue'
+import LoadingPage from './LoadingPage.vue'
 export default {
   name: 'McvFeed',
-  components: {ErrorMessage},
+  components: {ErrorMessage, LoadingPage},
   props: {
     apiUrl: {
       type: String,

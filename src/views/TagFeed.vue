@@ -4,6 +4,7 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
+          <feed-toggler :tag-name="tagName"></feed-toggler>
           <mcv-feed :api-url="apiUrl"></mcv-feed>
         </div>
         <div class="col-md-3">
@@ -18,12 +19,14 @@
 import McvFeed from '@/components/Feed.vue'
 import PopularTags from '@/components/PopularTags.vue'
 import McvBanner from '@/components/Banner.vue'
+import FeedToggler from '@/components/FeedToggler.vue'
 export default {
   name: 'McvGlobalFeed',
   components: {
     McvFeed,
     PopularTags,
     McvBanner,
+    FeedToggler,
   },
   computed: {
     tagName() {
@@ -33,10 +36,5 @@ export default {
       return `/articles?tag=${this.tagName}`
     },
   },
-  //   data() {
-  //     return {
-  //       apiUrl: '/articles',
-  //     }
-  //   },
 }
 </script>
