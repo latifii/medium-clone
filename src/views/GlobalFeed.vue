@@ -19,8 +19,6 @@
 import McvFeed from '@/components/Feed.vue'
 import PopularTags from '@/components/PopularTags.vue'
 import McvBanner from '@/components/Banner.vue'
-import FeedToggler from '@/components/FeedToggler.vue'
-
 export default {
   name: 'McvGlobalFeed',
   components: {

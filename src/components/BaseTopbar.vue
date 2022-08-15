@@ -63,10 +63,6 @@ import {mapGetters} from 'vuex'
 export default {
   name: 'BaseTopbar',
   computed: {
-    // ...mapState({
-    //   currentUser: (state) => state.auth.currentUser,
-    //   isLoggedIn: (state) => state.auth.isLoggedIn,
-    // }),
     ...mapGetters(['currentUser', 'isLoggedIn']),
   },
 }
