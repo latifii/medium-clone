@@ -5,6 +5,7 @@ const state = {
   isLoading: false,
   error: null,
 }
+
 const mutations = {
   getPopularTagsStart(state) {
     state.data = null
