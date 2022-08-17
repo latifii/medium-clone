@@ -25,8 +25,8 @@
       </div>
     </div>
     <div class="container page">
-      <!-- <mcv-loading v-if="isLoading" />
-      <mcv-error-message v-if="isLoading" :message="error" /> -->
+      <mcv-loading />
+      <error-message></error-message>
       <div class="row article-content">
         <div class="col-xs-12">
           <div>
@@ -38,3 +38,13 @@
     </div>
   </div>
 </template>
+<script>
+import ErrorMessage from '@/components/ErrorMessage.vue'
+
+export default {
+  name: 'ArticleView',
+  components: {
+    ErrorMessage,
+  },
+}
+</script>
