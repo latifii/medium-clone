@@ -34,8 +34,8 @@
           <h1>{{ article.title }}</h1>
           <p>{{ article.description }}</p>
           <span>Read more...</span>
-          TAG LIST
         </router-link>
+        <tag-list :tags="article.tagList" />
       </div>
     </div>
   </div>
@@ -45,9 +45,10 @@
 import {mapState} from 'vuex'
 import ErrorMessage from './ErrorMessage.vue'
 import LoadingPage from './LoadingPage.vue'
+import TagList from './TagList.vue'
 export default {
   name: 'McvFeed',
-  components: {ErrorMessage, LoadingPage},
+  components: {ErrorMessage, LoadingPage, TagList},
   props: {
     apiUrl: {
       type: String,

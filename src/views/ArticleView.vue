@@ -1,17 +1,17 @@
 <template>
   <div class="article-page">
     <div class="banner">
-      <div class="container">
-        <h1>title</h1>
+      <div class="container" v-if="article">
+        <h1>{{ article.title }}</h1>
         <div class="article-meta">
           <a>
-            <img src="article.author.image" />
+            <img :src="article.author.image" />
           </a>
           <div class="info">
-            <a> username </a>
-            <span class="date">createdAt </span>
+            <a> {{ article.author.username }} </a>
+            <span class="date">{{ article.createdAt }} </span>
           </div>
-          <span>
+          <span v-if="isAuthor">
             <a class="btn btn-outline-secondary btn-sm">
               <i class="ion-edit" />
               Edit Article
@@ -25,14 +25,15 @@
       </div>
     </div>
     <div class="container page">
-      <mcv-loading />
-      <error-message></error-message>
-      <div class="row article-content">
+      <!-- <mcv-loading v-if="isLoading" /> -->
+      <loading-page v-if="isLoading" />
+      <error-message v-if="false"></error-message>
+      <div class="row article-content" v-if="article">
         <div class="col-xs-12">
           <div>
-            <p>body</p>
+            <p>{{ article.body }}</p>
           </div>
-          TAG LIST IS HERE
+          <tag-list :tags="article.tagList"></tag-list>
         </div>
       </div>
     </div>
@@ -40,11 +41,31 @@
 </template>
 <script>
 import ErrorMessage from '@/components/ErrorMessage.vue'
+import {mapGetters, mapState} from 'vuex'
+import TagList from '@/components/TagList.vue'
 
 export default {
   name: 'ArticleView',
   components: {
     ErrorMessage,
+    TagList,
+  },
+  computed: {
+    ...mapState({
+      article: (state) => state.article.data,
+      isLoading: (state) => state.article.isLoading,
+      error: (state) => state.article.error,
+    }),
+    ...mapGetters(['currentUser']),
+    isAuthor() {
+      if (!this.article || !this.currentUser) {
+        return false
+      }
+      return this.currentUser.username === this.article.author.username
+    },
+  },
+  mounted() {
+    this.$store.dispatch('getArticle', this.$route.params)
   },
 }
 </script>
