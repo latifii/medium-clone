@@ -2,6 +2,7 @@
   <div>
     <h2>Create Form</h2>
     <article-form
+      :initial-values="initialValues"
       :errors="validationErrors"
       :isSubmitting="isSubmitting"
       @articleSubmit="onSubmit"
@@ -11,6 +12,8 @@
 
 <script>
 import ArticleForm from '@/components/ArticleForm.vue'
+import {mapState} from 'vuex'
+
 export default {
   name: 'CreateArticle',
   components: {ArticleForm},
@@ -22,13 +25,22 @@ export default {
         body: '',
         tagList: [],
       },
-      validationErrors: null,
-      isSubmitting: false,
     }
   },
+  computed: {
+    ...mapState({
+      isSubmitting: (state) => state.createArticle.isSubmitting,
+      validationErrors: (state) => state.createArticle.validationErrors,
+    }),
+  },
   methods: {
-    onSubmit(data) {
-      console.log('On Event', data)
+    onSubmit(articleInput) {
+      // console.log('On Event', articleInput)
+      this.$store
+        .dispatch('createArticle', {articleInput})
+        .then((article) =>
+          this.$router.push({name: 'article', params: {slug: article.slug}})
+        )
     },
   },
 }

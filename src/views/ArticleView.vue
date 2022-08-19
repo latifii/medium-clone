@@ -12,10 +12,13 @@
             <span class="date">{{ article.createdAt }} </span>
           </div>
           <span v-if="isAuthor">
-            <a class="btn btn-outline-secondary btn-sm">
+            <router-link
+              :to="{name: 'editArticle', params: {slug: article.slug}}"
+              class="btn btn-outline-secondary btn-sm"
+            >
               <i class="ion-edit" />
               Edit Article
-            </a>
+            </router-link>
             <button class="btn btn-outline-danger btn-sm">
               <i class="ion-trash-a" />
               Delete Article
@@ -61,6 +64,8 @@ export default {
       if (!this.article || !this.currentUser) {
         return false
       }
+      console.log('this article', this.article.author.username)
+      console.log('this current', this.currentUser.username)
       return this.currentUser.username === this.article.author.username
     },
   },
