@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     onSubmit(articleInput) {
-      // console.log('On Event', articleInput)
       this.$store
         .dispatch('createArticle', {articleInput})
         .then((article) =>
